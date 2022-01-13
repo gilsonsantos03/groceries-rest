@@ -1,0 +1,8 @@
+{
+  "name": "groceries-rest",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "repository": "git@github.com:gilsonsantos03/groceries-rest.git",
+  "author": "Gilson <gilsonsantos1998@gmail.com>",
+  "license": "MIT"
+}
