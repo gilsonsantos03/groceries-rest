@@ -2,9 +2,11 @@ const CategoryService = require('./services/CategoryService')
 const ProductService = require('./services/ProductService')
 const OrderService = require('./services/OrderService');
 
-const { catalogoController } = require('./controllers/CatalagoController');
+const { catalogController } = require('./controllers/CatalogController');
+const DataValidation = require('./middlewares/DataValidation');
 
 const express = require('express');
+const { default: axios } = require('axios');
 
 const app = express();
 
@@ -14,7 +16,12 @@ app.get("/", (req, res) => {
     res.send(introMessage);
 });
 
-app.get("/catalogo", catalogoController.showProducs());
+app.get("/catalogo", catalogController.showProducts());
+app.post("/adicionar", DataValidation.validate, catalogController.addProduct());
+app.get("/remover", DataValidation.validate, catalogController.removeProduct());
+app.get("/pedido", catalogController.showOrder());
+app.get("/limpar", catalogController.clearOrder());
+app.get("/finalizar", catalogController.doCheckout());
 
 module.exports = {
     app,
