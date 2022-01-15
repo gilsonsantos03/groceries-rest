@@ -29,6 +29,7 @@ class CatalogController {
         };
     }
 
+    // with problems
     removeProduct() {
         return (req, res) => {
             const product = req.body;
