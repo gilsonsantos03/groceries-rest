@@ -29,11 +29,10 @@ class CatalogController {
         };
     }
 
-    // with problems
     removeProduct() {
         return (req, res) => {
             const product = req.body;
-            res.json(OrderService.deleteProduct(product.id, product.description))
+            res.send(OrderService.deleteProduct(product.id))
         };
     }
 

@@ -1,5 +1,5 @@
 const { products } = require('../models/Products')
-const { order } = require('../models/Orders')
+var { order } = require('../models/Orders')
 
 
 class OrderService {
@@ -22,10 +22,18 @@ class OrderService {
     return order
   }
 
-  static deleteProduct(productId, productName) {
-    order.totalPrice -= order.products[productId].price
-    order.products.splice(productName, 1)
-    return order
+  static deleteProduct(productId) {
+    const productToBeRemoved = order.products.find( product => product.id === productId)
+    if (typeof productToBeRemoved !== "undefined") {
+      order.totalPrice -= productToBeRemoved.price
+      const orderUpdated = order.products.filter( product => product.id !== productId)
+      order = orderUpdated
+      return order
+    } else if (order.products.length === 0) {
+      return "Você ainda não adicionou nada no carrinho"
+    } else {
+      return "Produto não encontrado :("
+    }
   }
 
   static clearOrder() {
