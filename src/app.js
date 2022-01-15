@@ -16,12 +16,12 @@ app.get("/", (req, res) => {
     res.send(introMessage);
 });
 
-app.get("/catalogo", catalogController.showProducts());
+app.get("/catalogo", catalogController.showProducts()); 
 app.post("/adicionar", DataValidation.validate, catalogController.addProduct());
-app.get("/remover", DataValidation.validate, catalogController.removeProduct());
+app.post("/remover", DataValidation.validate, catalogController.removeProduct());
 app.get("/pedido", catalogController.showOrder());
-app.get("/limpar", catalogController.clearOrder());
-app.get("/finalizar", catalogController.doCheckout());
+app.post("/limpar", catalogController.clearOrder());
+app.post("/finalizar", catalogController.doCheckout());
 
 module.exports = {
     app,

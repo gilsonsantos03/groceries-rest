@@ -8,6 +8,7 @@ class OrderService {
       if (products[i].id === productId) {
         products[i].stock -= qty
         order.products.push({
+          id: products[i].id,
           product: products[i].description,
           qty,
           price: qty * products[i].price

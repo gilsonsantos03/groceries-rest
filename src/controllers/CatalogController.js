@@ -3,7 +3,7 @@ const OrderService = require("../services/OrderService");
 class CatalogController {
     showProducts() {
         return (req, res) => {
-            res.json( 
+            res.send( 
             `<h2> Frutas </h2>
             Banana: R$ 0,50</br>
             Laranja: R$ 1,00</br>
@@ -24,15 +24,14 @@ class CatalogController {
     addProduct() {
         return (req, res) => {
             const product = req.body;
-
-            res.json(OrderService.addProduct(product.id, product.qty))
+            OrderService.addProduct(product.id, product.qty)
+            res.send("Produto adicionado com sucesso")
         };
     }
 
     removeProduct() {
         return (req, res) => {
-            const c = req.body;
-
+            const product = req.body;
             res.json(OrderService.deleteProduct(product.id, product.description))
         };
     }
@@ -45,13 +44,20 @@ class CatalogController {
 
     clearOrder() {
         return (req, res) => {
-            res.json(OrderService.clearOrder())
+            OrderService.clearOrder()
+            res.send("Carrinho limpo!")
         };
     }
 
     doCheckout() {
         return (req, res) => {
-            res.json("Pedido finalizado! Volte sempre :)")
+            let order = OrderService.getOrder()
+            if (order.products.length == 0) {
+                res.send(`Pedido não pode ser finalizado, pois você ainda não adicionou nada ao carrinho`)
+            } else {
+                res.send(`Pedido finalizado! Volte sempre :)`)
+            }
+           
         };
     }
 }
