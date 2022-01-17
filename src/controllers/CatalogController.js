@@ -26,6 +26,7 @@ class CatalogController {
             const product = req.body;
             OrderService.addProduct(product.id, product.qty)
             res.send("Produto adicionado com sucesso")
+            console.log("Produto adicionado com sucesso")
         };
     }
 
@@ -46,6 +47,7 @@ class CatalogController {
         return (req, res) => {
             OrderService.clearOrder()
             res.send("Carrinho limpo!")
+            console.log("Carrinho limpo!")
         };
     }
 
@@ -54,8 +56,10 @@ class CatalogController {
             let order = OrderService.getOrder()
             if (order.products.length == 0) {
                 res.send(`Pedido não pode ser finalizado, pois você ainda não adicionou nada ao carrinho`)
+                console.log(`Pedido não pode ser finalizado, pois você ainda não adicionou nada ao carrinho`)
             } else {
                 res.send(`Pedido finalizado! Volte sempre :)`)
+                console.log(`Pedido finalizado! Volte sempre :)`)
             }
            
         };

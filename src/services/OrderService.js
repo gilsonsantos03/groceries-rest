@@ -30,8 +30,10 @@ class OrderService {
       order = orderUpdated
       return order
     } else if (order.products.length === 0) {
+      console.log("Você ainda não adicionou nada no carrinho")
       return "Você ainda não adicionou nada no carrinho"
     } else {
+      console.log("Produto não encontrado :(")
       return "Produto não encontrado :("
     }
   }
