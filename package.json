@@ -6,7 +6,8 @@
   "author": "Gilson <gilsonsantos1998@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "nodemon src/index.js"
+    "start": "nodemon src/index.js",
+    "run": "nodemon src/clientIndex.js"
   },
   "dependencies": {
     "axios": "^0.24.0",
